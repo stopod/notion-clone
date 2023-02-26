@@ -1,0 +1,30 @@
+#
+POST http://localhost:5000/api/v1/register
+Content-Type: application/json
+
+{
+  "username": "testtest3",
+  "password": "ababababab",
+  "confirmPassword": "ababababab"
+}
+
+###
+
+
+POST http://localhost:5000/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "testtest3",
+  "password": "ababababab"
+}
+
+###
+
+POST http://localhost:5000/api/v1/verify-token
+Content-Type: application/json
+authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjIwMTFlNjFiYTYwODQ2NjFmYjAyYSIsImlhdCI6MTY3NjgwODQ0NywiZXhwIjoxNjc2ODk0ODQ3fQ.BD3wyinUAHP8mWf5ipQrftdBOGa67TQKE_igAa2U4nA
+
+{}
+
+###
