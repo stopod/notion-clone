@@ -11,7 +11,7 @@ const axiosClient = axios.create({
 // APIをたたく前に処理を行う
 axiosClient.interceptors.request.use(async (config) => {
   return {
-    config,
+    ...config,
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
