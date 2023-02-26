@@ -1,11 +1,11 @@
 #
-POST http://localhost:5000/api/v1/register
+POST http://localhost:5000/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "username": "testtest3",
-  "password": "ababababab",
-  "confirmPassword": "ababababab"
+  "username": "notionUser2",
+  "password": "12345678",
+  "confirmPassword": "12345687"
 }
 
 ###
