@@ -4,17 +4,24 @@ import { Outlet, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import notionLogo from "../../assets/images/notion-logo.png";
 import authUtils from "../../utils/authUtils";
+import Sidebar from "../common/Sidebar";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/features/userSlice";
 
-const AuthLayout = () => {
+const AppLayout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // JWTを持っているのか確認する。
     const checkAuth = async () => {
       // 認証チェック
-      const isAuth = await authUtils.isAuthenticated();
-      if (isAuth) {
-        navigate("/");
+      const user = await authUtils.isAuthenticated();
+      if (!user) {
+        navigate("/login");
+      } else {
+        // ユーザーを保存する
+        dispatch(setUser(user));
       }
     };
     checkAuth();
@@ -22,26 +29,14 @@ const AuthLayout = () => {
 
   return (
     <div>
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 6,
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <img
-            src={notionLogo}
-            alt=""
-            style={{ width: 100, height: 100, marginBottom: 3 }}
-          />
-          Notionクローン開発
+      <Box sx={{ display: "flex" }}>
+        <Sidebar />
+        <Box sx={{ flexGrow: 1, p: 1, width: "max-content" }}>
+          <Outlet />
         </Box>
-        <Outlet />
-      </Container>
+      </Box>
     </div>
   );
 };
 
-export default AuthLayout;
+export default AppLayout;
