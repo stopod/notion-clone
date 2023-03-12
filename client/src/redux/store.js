@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/userSlice";
+import memoReducer from "./features/memoSlice";
 
 /**
  * ChatGPT
@@ -17,5 +18,6 @@ import userReducer from "./features/userSlice";
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    memo: memoReducer,
   },
 });
